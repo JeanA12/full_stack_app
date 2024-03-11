@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent { dockerfile true }
     environment {
        NODEJS_HOME = tool 'nodejs_latest'
        PATH="${env.NODEJS_HOME}/bin:${env.PATH}"
