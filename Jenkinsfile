@@ -43,7 +43,7 @@ pipeline {
             steps {
                 // Déploiement des images Docker
                 script {
-                    sh 'docker run -d -p 4200:80 nom_image_frontend:latest' // Exemple pour le front-end
+                    sh 'docker run -d -p 44423:80 nom_image_frontend:latest' // Exemple pour le front-end
                     sh 'docker run -d -p 46319:8080 nom_image_backend:latest' // Exemple pour le back-end
                 }
             }
