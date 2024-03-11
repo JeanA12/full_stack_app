@@ -3,7 +3,7 @@ pipeline {
     stages {
          stage('Preparations'){
             steps{
-               nodejs(nodeJSInstallationName: 'Node 6.x', configId: '<config-file-provider-id>') {
+               nodejs(nodeJSInstallationName: 'Node 21.7.1') {
                     sh 'npm config ls'
                 }
             }
