@@ -1,14 +1,7 @@
 pipeline {
     agent any
     stages {
-         stage('Preparations'){
-            steps{
-               nodejs(nodeJSInstallationName: 'Node 21.7.1') {
-                    sh 'npm config ls'
-                }
-            }
-         }
-        stage('Build Frontend') {
+       stage('Build Frontend') {
             steps {
                 // Construction de l'application Angular
                 dir('client-demo-test') {
