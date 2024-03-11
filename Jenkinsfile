@@ -1,11 +1,12 @@
 pipeline {
     agent any
+    environment {
+       NODEJS_HOME = tool 'nodejs'
+       PATH="${env.NODEJS_HOME}/bin:${env.PATH}"
+    }
     stages {
        stage('Build Frontend') {
-            environment {
-               NODEJS_HOME = tool 'nodejs'
-               PATH="${env.NODEJS_HOME}/bin:${env.PATH}"
-            }
+
             steps {
                 // Construction de l'application Angular
                 dir('client-demo-test') {
