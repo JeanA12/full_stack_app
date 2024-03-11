@@ -1,7 +1,7 @@
 pipeline {
     agent any
     stages {
-       stage('Build Frontend') {
+       /*stage('Build Frontend') {
             steps {
                 // Construction de l'application Angular
                 dir('client-demo-test') {
@@ -11,7 +11,7 @@ pipeline {
                     }
                 }
             }
-        }
+        }*/
         
         stage('Build Backend') {
             steps {
