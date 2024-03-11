@@ -1,7 +1,4 @@
 pipeline {
-    env.NODEJS_HOME = "${tool 'NodeJsv21.7.1'}"
-    env.PATH="${env.NODEJS_HOME}/bin:${env.PATH}"
-    sh 'npm --version'
     agent any
     stages {
         stage('Build Frontend') {
