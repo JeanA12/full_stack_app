@@ -9,7 +9,7 @@ export class DemoService {
 
   private urlToCall = "http://api.openweathermap.org/data/2.5/weather?q=London&APPID=13ace172fb2979f69ef1ed16b0df342a"
 
-  private urlMyApi = "http://localhost:46319"
+  private urlMyApi = "http://localhost:1212"
 
   constructor(private http:HttpClient) { }
 
