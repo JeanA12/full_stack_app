@@ -58,11 +58,45 @@ On a donc les lignes avec les explications correspondantes:
 - ```ENV NODE_OPTIONS=--openssl-legacy-provider``` : met en place une option pour l'environnement de travail.
 - ```RUN npm install``` : permet à l'environnement d'installer les packages pour faire tourner notre application
 - ```RUN npm run build``` : construit le projet.
-et la suite des commandes sont redondantes donc on n'expliquera pas ce qu'elles font.
+
+La suite des commandes sont redondantes donc on n'expliquera pas ce qu'elles font.
 On aura ainsi l'image Docker propre permettant d'avoir une page qui requête notre back et une api tierce.
+
+<a name="jenkins"></a>
 
 ### Mise en place de Jenkins
 
+Dans cette partie nous verrons comment nous avons mis en place jenkins.
+Après l'installation, On télécharge le plugin Node.js. Puis dans le gestionnaires de tools, On créer une version Node.JS qui s'installe automatiquement, qui s'appelle ```nodejs_latest``` et qui a une version supérieur à 18.5.1. On le voit dans l'image suivante :
+
+![Alt text](images/tuto_jenkins.png?raw=true "Jenkins NodeJs parameters")
+
+Ensuite on télécharge le plugins Docker. Pour autoriser Jenkins à utiliser les commandes docker, on doit lui donner les droits de groupe en faisant:
+
+```sudo usermod -aG docker jenkins```
+
+Ensuite on redémarre Jenkins avec la commande : `sudo systemctl restart docker`
+
+Et on créer le pipeline avec Github avec la méthode décrit dans la partie suivante.
+
+<a name="relations"></a>
+
 ### Mise en relation Github-Jenkins
 
+On créer le pipeline en mettant les informations du Github dans Jenkins, puis on créer un `Jenkinsfile` dans le repository Github et on push.
+Une fois le fichier push, On peut l'éditer pour pouvoir build le projet dans Jenkins.
+On a donc les lignes suivantes du fichier :
+- ```agent any``` : car on a besoin d'aucun agent
+- ```environment {NODEJS_HOME = tool 'nodejs_latest' , PATH="${env.NODEJS_HOME}/bin:${env.PATH}"}``` : pour la mise en place de la version de NodeJS 
+- ```stage('Build Frontend')``` : Les étapes de build du front de l'application.
+- ```docker.build('nom_image_frontend:latest', 'client-demo-test')``` : cela permet la création de l'image Docker
+- ```sh 'docker run -d -p 1414:80 nom_image_frontend:latest'``` : met en route les images docker nécessaire à l'application
+
+On peut ainsi push le fichier et lancer le build dans Jenkins. On va ensuite sur l'url : `http://localhost:1414/` et on voit que l'application fonctionne :
+
+![Alt text](images/tuto_app.png?raw=true "Amazing Application")
+
 ## Mise en déploiement
+
+Pour la mise en déploiement, On fait les étapes [Mise en place jenkins](#jenkins) et [Mise en relation Github-Jenkins](#relations)
+
