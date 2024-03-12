@@ -14,7 +14,7 @@ On va donc présenter les étapes de construction du projets, puis la méthode p
 Nous verrons comment nous avons construit le back de notre application. Nous avons choisi de créer celui-ci avec Springboot.
 Nous avons utilisé les paramètres suivants:
 
-![Alt text](images/tuto_spring.png.jpg?raw=true "Spring parameters")
+![Alt text](images/tuto_spring.png?raw=true "Spring parameters")
 
 On modifie ensuite le fichier pour avoir un début d'API.
 Sachant qu'on est sous Linux/ubuntu, on peut tester en tapant la commande :
